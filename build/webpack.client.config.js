@@ -3,6 +3,7 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
 
 const base = require('./webpack.base.config')
 
@@ -32,7 +33,11 @@ const config = merge(base, {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest'
     }),
-    new VueSSRClientPlugin()
+    new VueSSRClientPlugin(),
+    new CompressionPlugin({
+      test: new RegExp('\\.(js|css)$'),
+      algorithm: 'gzip'
+    })
   ]
 })
 
