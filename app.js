@@ -66,7 +66,7 @@ if (!module.parent) {
 function serve (prefix, filePath) {
   return staticCache(path.resolve(__dirname, filePath), {
     prefix: prefix,
-    // gzip: false,
+    gzip: true,
     usePrecompiledGzip: true,
     dynamic: true,
     maxAge: 60 * 60 * 24 * 30
